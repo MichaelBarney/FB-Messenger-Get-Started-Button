@@ -1,17 +1,19 @@
 <head>
     <title>Get Started Button</title>
+
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
         const body = {
-            "get_started":{
-                "payload":"get_started"
+            "get_started": {
+                "payload": "get_started"
             }
         }
 
-        validate = function() {
+        validate = function () {
             var token = document.getElementById("token").value;
-            if (token != ''){
+            if (token != '') {
                 const url = `https://graph.facebook.com/v3.1/me/messenger_profile?access_token=${token}`;
-            
+
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -19,26 +21,48 @@
                     },
                     body: JSON.stringify(body),
                 })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log('Success:', data);
-                    alert("Your Get Started Button was successfully added!")
-                })
-                .catch((error) => {
-                    alert("An error ocurred configuring your Get Started Button, please verify that it was informed correctly.")
-                    console.error('Error:', error);
-                });
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                        alert("Your Get Started Button was successfully added!")
+                    })
+                    .catch((error) => {
+                        alert("An error ocurred configuring your Get Started Button, please verify that it was informed correctly.")
+                        console.error('Error:', error);
+                    });
             }
         }
 
-
-    
     </script>
 </head>
 
 <body>
-    <form onsubmit="return false;" method="post" name="myForm">
-        <p><input id="token" type="text" name="token" value="" />Page Acces Token</p>
-        <input name="Submit"  type="submit" value="Add Get Started Button" onclick="validate()"/>
-    </form>
+
+    <div class="head">
+
+        <!--main structure-->
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="active"> PAGE ACCESS TOKEN </h2>
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+
+                    <img src="https://image.freepik.com/free-vector/three-shiny-coins-white_1308-36328.jpg"
+                        height="190px" ; width="220px" ; alt="User Icon">
+
+                </div>
+
+                <form onsubmit="return false;" method="post" name="myForm">
+                    <input type="text" id="login" class="fadeIn second" name="login"
+                        placeholder="Enter your Access Token ...">
+
+                    <input type="submit" class="fadeIn fourth" value="GET STARTED" onclick='validate()' />
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 </body>
